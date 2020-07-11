@@ -80,20 +80,20 @@ public class Main {
         }
 	    fw.close();
 	    
-	    private static void parseEmployeeObject(JSONObject event){
-        
-            //Get headlines
-            JSONArray sentences = (JSONArray)event.get("headlines");   
-    
-            Optional<String> summary = summarizer.process(sentences, stopWords);
-           	if (summary.isPresent()) {
-               	//System.out.println(" >> " +summary.get());
-        		try{       
-                    fw.write(summary.get() + "\n");    
-                } catch(Exception e){System.out.println(e);}   
-            } 
-        }
+	    
 	    
     }
-
+    private static void parseEmployeeObject(JSONObject event){
+        
+            //Get headlines
+        JSONArray sentences = (JSONArray)event.get("headlines");   
+    
+        Optional<String> summary = summarizer.process(sentences, stopWords);
+       	if (summary.isPresent()) {
+            //System.out.println(" >> " +summary.get());
+        	try{       
+                fw.write(summary.get() + "\n");    
+            } catch(Exception e){System.out.println(e);}   
+        } 
+    }
 }
